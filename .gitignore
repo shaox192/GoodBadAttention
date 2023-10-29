@@ -1,7 +1,9 @@
 # pycharm related
 .idea/
 
-
+# data folder
+neural_data/
+behav_data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
