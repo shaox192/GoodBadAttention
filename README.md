@@ -1,5 +1,5 @@
 # GoodBadAttention
-***
+
 Code base for *Is Attention Necessary for the Representational Advantage of Good Exemplars over Bad Exemplars?* 
 (Shao & Beck, 2023, In revision)
 
@@ -27,13 +27,15 @@ Similar pipeline was applied to both functional localizer for ROI extractions an
 with some differences. Below we also outline which steps we took for each type.
 
 **Code dependencies**:
- 1. FSL
- 2. AFNI
+ 1. FSL: FLIRT version 6.0
+ 2. AFNI: Version AFNI_20.0.4
 
-**Steps used for functional localizer**:
-
-
-**Steps used for main experiment runs**:
+**Notes**
+1. GLMs are in 3ddeconvolve* files. The one with .py extension was used to avoid manually input all trial regressors
+because we need one estimate for each trial for later MVPA analysis.
+2. ROI masks were manully isolated using te bucket files output after 3ddeconvolve on functional localizers. These masks
+do need to be intersected with whole brain mask, then warped to the experimental run space using T1 images because these
+two sessions take place on different days.
 
 
 ***
