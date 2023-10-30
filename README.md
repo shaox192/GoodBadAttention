@@ -8,7 +8,7 @@ Code base for *Is Attention Necessary for the Representational Advantage of Good
 
 ### Publicly available data:
 - BOLD beta estimates from each ROI (PPA, OPA, MPA) are available on [OSF](https://osf.io/yc97n/). 
-There are outputs after finishing the preprocessing pipeline. Data are stored in both csv and pickle formats.
+There are outputs after finishing the preprocessing pipeline. Data are stored in __HDF5__ formats.
 Behavioral files not only contain subjects' responses and reactions times, but also has the order and timing
 of images presented. 
 - Images used in the experiment and their representativeness scores are available [here](). 
