@@ -8,6 +8,8 @@ behav_data/
 
 #old js package folder
 jspsych-6.1.0/
+images/
+jquery-2.2.0.js
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
