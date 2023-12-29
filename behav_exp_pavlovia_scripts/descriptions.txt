@@ -1,0 +1,75 @@
+Openness is the magnitude of spatial enclosure. At one pole (7:highest), there is a clear horizon and no occluders. 
+At the other pole (1: lowest), the scene is enclosed and bound by surfaces, textures and objects. 
+Openness decreases when the number of boundary elements increases.
+
+Openness is how open or closed the scene looks. 
+At one end, you can see a clear horizon with nothing blocking the view (7:highest). 
+At the other end, the view is filled with things like walls, surfaces, objects, and textures (1: lowest).
+
+
+
+Expansion is the degree of linear perspective in the scene. 
+It ranges from a flat view on a surface (1: lowest) to an environment
+with strong parallel lines converging on a vanishing point (7: highest).
+
+Expansion is how much the scene seems to stretch out in front of you. 
+It can look flat (1: lowest), 
+or it can have parallel lines that seem to meet at a point at far distance (7:highest).
+
+
+
+Depth corresponds to the scale or size of the space, 
+ranging from a close-up view on single surfaces or objects (1: lowest) to
+panoramic scenes (7: highest)
+
+Depth is the scale or size of the space, 
+ranging from a close-up view on single surfaces or objects (1: lowest) to
+a wide view of panoramic scenes (7: highest)
+
+
+Temperature refers to the physical temperature of the environment if the observer was immersed in the scene. 
+In other words, it refers to howor cold (1: lowest) or hot (7: highest) an observer would feel inside the depicted place
+
+Temperature is how hot (7: highest) or cold (1: lowest) you'd feel if you were immersed in the scene.
+
+
+
+Transience refers to the rate at which the environment depicted in the image is changing. 
+This can be related to physical movement, such as running water or rustling leaves. 
+It can also refer to the transience of the scene itself (fog is lifting, sun is setting).
+At one extreme, the scene identity is changing only in geological time (1: lowest), and at the other, the identity depends
+on the photograph being taken at that exact moment (7: highest)
+
+Transience is how quickly things in the scene are changing. Changing could mean something in the image is moving like running water, 
+or the overall scene changing, like when it depicts a sunset.
+At one extreme, the scene could seem stationary (1: lowest), and at the other extreme, the scene could depend
+on the photograph being taken at that exact moment (7: highest)
+
+
+
+Concealment refers to how efficiently and completely a human would be able to hide in a space, or the probability of hidden elements
+in the scene that would be difficult to search for. It ranges from complete exposure in a sparse
+space (1: lowest) to complete concealment due to dense and variable surfaces and objects (7: highest)
+
+Concealment is how easy it would be for people to hide in the scene OR how many elements are hidden in the photo. 
+It can range from being out in the open with nowhere to hide (1: lowest), 
+to a place with lots of hiding spots because of many objects and surfaces (7: highest).
+
+
+
+Navigability corresponds to the ease of self-propelled movement through the scene. 
+This ranges from complete impenetrability of the space due to clutter, obstacles or treacherous conditions (1: lowest)
+to free movement in any direction without obstacle (7: highest)
+
+Navigability is how easy it would be to move around in the scene. 
+It can range from a place filled with obstacles making it hard to move OR an environment too dangerous to move (1: lowest), 
+to an open space where you can go in any direction easily (7: highest).
+
+
+
+
+
+Clutter is how filled or crowded the scene is. 
+At one end, it's simple with few items or objects (1: lowest), 
+At the other end, it's packed with many things, making it look busy or messy (7: highest).
+

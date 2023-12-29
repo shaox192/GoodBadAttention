@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Image Rating</title>
+	<meta charset="UTF-8">
+
+	<script type="text/javascript" src="jspsych-6.1.0/jspsych.js"></script>
+	<link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+    <script src="./plugin-consent-page.js"></script>
+    <script src="./plugin-instruction.js"></script>
+    <script src="./utils.js"></script>
+    <script src="./generate_struct.js"></script>
+
+	<script type="text/javascript" src="jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
+    <script type="text/javascript" src="jspsych-6.1.0/plugins/jspsych-image-keyboard-response.js"></script>
+    <script type="text/javascript" src="jspsych-6.1.0/plugins/jspsych-html-button-response.js"></script>
+
+    <script type="text/javascript" src="jspsych-6.1.0/plugins/jspsych-resize.js"></script>
+    <script type="text/javascript" src="jspsych-6.1.0/plugins/jspsych-survey-text.js"></script>
+    <script type="text/javascript" src="jspsych-6.1.0/plugins/jspsych-external-html.js"></script>
+    <script type="text/javascript" src="jspsych-6.1.0/plugins/jspsych-survey-multi-choice.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/7.0.2/math.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.7/pixi.min.js"></script>
+    
+    <script type="text/javascript" src="lib/vendors/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="lib/jspsych-pavlovia-3.2.5.js"></script>
+
+
+<style>
+      
+    p.big {
+        line-height: 1.6;
+    }
+
+    div.c {
+  font-size: 30px;
+    }
+
+    #hide_id {
+      cursor: none;
+    }
+
+    img {cursor: none;}
+
+    .highlight {
+        color: red;
+        font-weight: bold;
+        font-style: italic;
+    }
+    .prompt {
+        font-size:20px;
+    }
+    .rating_transition {
+        font-size:24px;
+        text-align: left;
+        /* margin-left: 10%; */
+    }
+    .end_message {
+        font-size:24px;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+
+
+</style>
+
+</head>
+
+<body>
+    <script>
+
+        /* create timeline */
+		var timeline = [];
+
+		/* init connection with pavlovia.org */
+		var pavlovia_init = {
+			type: "pavlovia",
+			command: "init"
+		};
+		
+        timeline.push(pavlovia_init);
+        
+        let sona_id = jsPsych.data.urlVariables()['sona_id']
+        console.log(sona_id)
+
+        var hello_trial = {
+            type: "html-keyboard-response",
+            stimulus: `<p>Welcome to the experiment! SONA_ID = ${sona_id} </p>`+
+            "<p>This experiment would take around 40 mins to finish. </p>" +
+            "<p>We will start with the informed consent form. </p>" +
+            "<p>Please press SPACEBAR to continue </p>" ,
+            choices: ['SPACEBAR']
+        }
+
+        timeline.push(hello_trial);
+
+        var consent_trial = {
+            type: 'consent-form'
+        };
+
+        timeline.push(consent_trial);
+
+        var transition1_trial = {
+            type: "html-keyboard-response",
+            stimulus: "<p>Thank you for consenting to participation</p>"+
+            "<p>Next, we are going to ask you a few survey questions</p>" +
+            "<p>Please press SPACEBAR to continue </p>" ,
+            choices: ['SPACEBAR']
+        }
+        timeline.push(transition1_trial);
+
+        var age_info = {
+            type: 'survey-text',
+            questions: [
+                {prompt: "[Question 1/3] How old are you?", required: true},            
+                ],
+        };
+
+        var multi_choice_gender = {
+            type: 'survey-multi-choice',
+            questions: [
+                {prompt: "[Question 2/3] How would you describe your gender?", 
+                options: ["Female", "Male", "Prefer not to say"], required: true}
+            ],
+        };
+
+        var multi_choice_vision = {
+            type: 'survey-multi-choice',
+            questions: [
+                {prompt: "[Question 3/3] Do you have normal or corrected-to-normal vision? " +
+                "If you have corrected-to-normal vision, please wear your glasses to continue", options: ["I don't need vision correction", "I need and am wearing vision correction"], required: true}
+            ],
+        };
+
+        timeline.push(age_info, multi_choice_gender, multi_choice_vision);
+        
+        var transition2_trial = {
+            type: "html-keyboard-response",
+            stimulus: "<p>Thank you for answering the survey question</p>"+
+            "<p>Now we are going to run a quick test to get a measure of your screen resolution</p>" +
+            "<p>You will need a credit card or anything that has the same size as a credit card for this test.</p>" +
+            "<p>Please press SPACEBAR to continue </p>" ,
+            choices: ['SPACEBAR']
+        }
+        timeline.push(transition2_trial);
+
+        /* resize */
+        var inputs_resize = {
+            type: 'resize',
+            item_width: 3 + 3/8,
+            item_height: 2 + 1/8,
+            prompt: '<span style="cursor: default;"><p>Click and drag the lower right corner of the box until the box is the same size as a credit card (width = 3.375 in; height = 2.125 in) held up to the screen.</p></span>',
+            pixels_per_unit: 150
+        };
+        timeline.push(inputs_resize)
+        
+        /******************************* EXP starts *******************************/
+
+        /* define instructions trial */
+        var instruction_trial = {
+            type: 'instruction'
+        };
+
+        timeline.push(instruction_trial);
+
+        var transition_instruction_prac = {
+            type: "html-keyboard-response",
+            stimulus: "<p>Got it?</p>"+
+            "<p>Let's get started with practices first!</p>" +
+            "<p>Please press SPACEBAR to continue </p>" ,
+            choices: ['SPACEBAR']
+        }
+        timeline.push(transition_instruction_prac);
+
+
+        /* define rating prompts for each trial */
+        var openness_rating = ratingTrial("Openness");
+        var expansion_rating = ratingTrial("Expansion");
+        var depth_rating = ratingTrial("Depth");
+        var temperature_rating = ratingTrial("Temperature");
+        var transience_rating = ratingTrial("Transience");
+        var concealment_rating = ratingTrial("Concealment");
+        var navigability_rating = ratingTrial("Navigability");
+        var clutter_rating = ratingTrial("Clutter");
+
+
+        var rating_dict = {"openness": openness_rating,
+                           "expansion": expansion_rating,
+                           "depth": depth_rating, 
+                           "temperature": temperature_rating,
+                           "transience": transience_rating,
+                           "concealment": concealment_rating,
+                           "navigability":navigability_rating,
+                           "clutter": clutter_rating
+                        };
+
+        /* define block transition instructions*/
+        var transition_openness = transitionInstruction("openness");
+        var transition_expansion = transitionInstruction("expansion");
+        var transition_depth = transitionInstruction("depth");
+        var transition_temperature = transitionInstruction("temperature");
+        var transition_transience = transitionInstruction("transience");
+        var transition_concealment = transitionInstruction("concealment");
+        var transition_navigability = transitionInstruction("navigability");
+        var transition_clutter = transitionInstruction("clutter");
+
+        var transition_dict = {"openness": transition_openness,
+                               "expansion": transition_expansion,
+                               "depth": transition_depth, 
+                               "temperature": transition_temperature,
+                               "transience": transition_transience,
+                               "concealment": transition_concealment,
+                               "navigability":transition_navigability,
+                               "clutter": transition_clutter
+                            };
+
+
+        /**************** meta params ****************/
+        var properties = ["openness", "expansion", "depth", "temperature", "transience","concealment", "navigability", "clutter"];
+        const num_blk = properties.length;
+        console.log(`number of blocks is ${num_blk}`)
+        
+        /****************  Practice Block ****************/
+        var practice_folder = 'images/practice';
+        const prac_num_uniq = 6;
+        var practice_data = generateStruct(properties, practice_folder, prac_num_uniq)
+        console.log(practice_data);
+
+        for (i = 0; i < num_blk; i++){
+            const curr_property = practice_data.blocks[i]
+            console.log(curr_property);
+
+            var practice_stim = [];
+            for (const im of practice_data.images[curr_property]){
+                // console.log(im);
+                practice_stim.push({stimulus: im, data: {test_part: 'practice', rating_property:curr_property}})
+            };
+
+            timeline.push(transition_dict[curr_property]);
+            var prac_blk = {
+                timeline: [rating_dict[curr_property]],
+                timeline_variables: practice_stim,
+                repetitions: 1,
+                randomize_order: false
+            };
+
+            timeline.push(prac_blk);
+
+        };
+
+        var transition_prac = {
+            type: "html-keyboard-response",
+            stimulus: "<p>Good job with the practices!</p>"+
+            "<p>We hope that the practices helped you get familiar with the task itself and the different properties of images</p>" +
+            "<p>Now we are going into the actual experiment session. Everything remains the same, but just with more images to rate.</p>" +
+            "<p>If you are ready, please press SPACEBAR to continue </p>" ,
+            choices: ['SPACEBAR']
+        }
+        timeline.push(transition_prac);
+
+        
+        /**************** EXP block ****************/
+        
+        var exp_folder = 'images/exp';
+        const exp_num_uniq = 80;
+        var exp_data = generateStruct(properties, exp_folder, exp_num_uniq)
+        console.log(exp_data);
+
+        for (i = 0; i < num_blk; i++){
+            const curr_property = exp_data.blocks[i]
+            console.log(curr_property);
+
+            var exp_stim = [];
+            for (const im of exp_data.images[curr_property]){
+                // console.log(im);
+                exp_stim.push({stimulus: im, data: {test_part: 'exp', rating_property:curr_property}})
+            };
+
+            timeline.push(transition_dict[curr_property]);
+            var exp_blk = {
+                timeline: [rating_dict[curr_property]],
+                timeline_variables: exp_stim,
+                repetitions: 1,
+                randomize_order: false
+            };
+
+            timeline.push(exp_blk);
+
+        };
+
+        
+        /*************************** END stuff ****************************/
+        var end_trial = {
+            type: "html-keyboard-response",
+            stimulus:`<div class="end_message"><p>Congratulations on completing the experiment! </p>
+                        <p>You will be redirected to the subject pool and
+                            credit should be automatically granted.</p>
+                        <p> However, If you are not redirected OR do not see your credit assigned 
+                            within 24 hours, please reach out to the researcher.</p>
+                        <p>Thank you for your participation.</p>
+                        <p>Please press SPACEBAR to finish. 
+                      </div>`,
+            choices: ['SPACEBAR']
+        }
+        timeline.push(end_trial)
+
+
+        // Final ending stuff
+        var iti = {
+            type: "html-keyboard-response",
+            stimulus: "",
+            response_ends_trial: false,
+            trial_duration: 500
+        }
+
+        var pavlovia_finish = {
+            type: "pavlovia",
+            command: "finish"
+        };
+
+        timeline.push(pavlovia_finish);
+        timeline.push(iti)
+
+        /* start the experiment .concat(exp_img)*/
+        jsPsych.init({
+        	timeline: timeline,
+            preload_images: practice_data.images["openness"].concat(exp_data.images["openness"]),
+            on_finish: function(data){ 
+                window.location.assign("https://uiuc.sona-systems.com/webstudy_credit.aspx?experiment_id=1931&credit_token=6c53ffc2dfea4f23bd1ea8534df0ef24&survey_code="+sona_id)
+            },
+        });
+
+
+    </script>
+</body>
+
+</html>
