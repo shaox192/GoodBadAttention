@@ -4,6 +4,10 @@
 # data folder
 neural_data/
 behav_data/
+*data/
+
+#old js package folder
+jspsych-6.1.0/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
