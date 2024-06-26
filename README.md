@@ -1,7 +1,7 @@
 # GoodBadAttention
 
-Code base for *Is Attention Necessary for the Representational Advantage of Good Exemplars over Bad Exemplars?* 
-(Shao & Beck, 2023, In revision)
+Code base for [*Is Attention Necessary for the Representational Advantage of Good Exemplars over Bad Exemplars?*](https://doi.org/10.1111/ejn.16291)
+(Shao & Beck (2024), European Journal of Neuroscience, 59(9), 2129-2415.)
 
 ### Absract
 
